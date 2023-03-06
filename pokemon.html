@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>POKEPON!</title>
+        <link rel="stylesheet" href="./styles.css">   
+        <script src="./js/pokemon.js"></script> 
+    </head>
+    <body> 
+        <div>
+            <div class="tittle">
+                <h1 class="titulo">PoKéMoN!<br>🔥🌱💧</h1>
+            </div>
+    
+            <section id="select-pokemon">                
+    
+                <h2 id="pre-selection" class="subtitulo">Elige tu pokepon:</h2>   
+                <div class="cards">
+
+                    <input type="radio" name="pokemon" id="hipodoge" />
+                    <label id="label-hipodoge" class="pokemon" for="hipodoge">
+                        <p>Hipodoge💧</p>                        
+                        <img src="./assets/mokepons_mokepon_hipodoge_attack.png" alt="Hipodoge">
+                    </label>
+                    
+                    <input type="radio" name="pokemon" id="capipepo" />
+                    <label id="label-capipepo" class="pokemon" for="capipepo">
+                        <p>Capipepo🌱</p>                        
+                        <img src="./assets/mokepons_mokepon_capipepo_attack.png" alt="Capipepo">
+                    </label>
+                    
+                    <input type="radio" name="pokemon" id="ratigueya" />
+                    <label id="label-ratigueya" class="pokemon" for="ratigueya">
+                        <p>Ratigueya🔥</p>                        
+                        <img src="./assets/mokepons_mokepon_ratigueya_attack.png" alt="Ratigueya">
+                    </label>  
+
+                </div>
+                <button id="btn-select">Seleccionar</button>
+    
+            </section>
+    
+            <section id="select-attack">
+                
+                <h2 class="subtitle">Elige tu ataque:</h2>
+
+                <div class="btns-attacks">
+                    <button id="btn-atk-fire">Fuego 🔥</button>
+                    <button id="btn-atk-water">Agua 💧</button>
+                    <button id="btn-atk-plant">Planta 🌱</button>
+                </div> 
+
+                <div id="message">                    
+                    <p id="result">Elige un Ataque</p>                              
+                    <section id="reset">
+                        <button id="btn-reset">Reiniciar</button>
+                    </section> 
+                </div>
+
+                <section class="attacks">
+                    <div class="item-a">
+                        <p>Juegador:</p>
+                        <p id="player-lifes">❤❤❤</p> 
+                        <p id="player-pokemon"></p>
+                        <div id="attack-of-player"></div>                        
+                    </div>
+                    <div class="item-b">
+                        <p>Enemigo:</p>
+                        <p id="enemy-lifes">❤❤❤</p>
+                        <p id="enemy-pokemon"></p>
+                        <div id="attack-of-enemy"></div>                        
+                    </div>                    
+                </section>                
+            </section>
+        </div>
+    </body>
+</html>

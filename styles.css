@@ -1,0 +1,126 @@
+@font-face {
+    font-family: Pokemon;
+    src: url(./fonts/Ketchum.otf);
+}
+@font-face {
+    font-family: PokemonItalic;
+    src: url(./fonts/Ketchum\ Italic.otf);
+}
+@font-face {
+    font-family: PokemonKiddy;
+    src: url(./fonts/Pokemon\ Kiddy\ Ding.ttf);
+}
+body{
+    background: #000 url(https://web.poecdn.com/protected/image/layout/kalandra-bg.jpg?v=1662291060298.69&key=jGhjCJ-8QJtg_O00aZnesQ);
+    color: aqua;    
+}
+.tittle{    
+    display: flex;
+    color: #e7a905;
+    -webkit-text-stroke: 1px #263f8f;     
+    font-family: PokemonItalic;
+    font-size: 28px;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;             
+}
+#select-pokemon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.subttle {
+    color: #e7a905;
+    -webkit-text-stroke: 1px #263f8f;     
+    font-family: PokemonItalic;
+    font-size: 28px;
+}
+
+.cards {
+    display: flex;
+    gap: 10px;
+}
+.btns-attacks {
+    display: flex;
+}
+.card:hover {
+    cursor: pointer;
+    box-shadow: 1px1px10px #000;
+}
+input:checked+label {
+    background-color: #263f8f;
+}
+.pokemon {
+    display: flex;
+    width: auto;
+    height: auto;
+    background-color: none;
+    padding: 10px;
+    border: 1px solid #263f8f;
+    border-radius: 10px;    
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+.pokemon img {
+    width: 80px;
+}
+#btn-select {    
+    border: 1px solid;
+    border-radius: 5px;
+    width: 130px;      
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #e7a905;
+    color: aqua;
+    box-sizing: border-box;
+    color: #263f8f;
+    -webkit-text-stroke: 1px #263f8f;      
+}
+button {
+    border: 1px solid;
+    border-radius: 5px;
+    width: 130px;      
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #e7a905;
+    color: aqua;
+    box-sizing: border-box;
+    color: #263f8f;
+    -webkit-text-stroke: 1px #263f8f;     
+}
+input {
+    display: none;
+}
+#select-attack {   
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+#message {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 280px;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 20px;
+    background-color: #263f8f;    
+}
+#btn-reset{
+    border: 2px solid;
+    background-color: #263f8f;
+    -webkit-text-stroke: 1px white; 
+    color: white;
+}
+.attacks {
+    display: grid;
+    grid-template-columns: 150px 150px;
+}
+
+@media (max-width: 360px) {
+    .cards, .btns-attacks {
+        flex-direction: column;
+    }    
+}
