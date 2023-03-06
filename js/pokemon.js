@@ -20,19 +20,24 @@ function iniciarJuego(){
     enabledBtns(true);
 }
 function selectPokemon (){
-    let inputHipodoge = document.getElementById('hipodoge');
-    let inputCapipepo = document.getElementById('capipepo');
-    let inputRatigueya = document.getElementById('ratigueya');
+    let inputSquirtle = document.getElementById('squirtle');
+    let inputBulbasaur = document.getElementById('bulbasaur');
+    let inputCharmander = document.getElementById('charmander');
 
     let pPlayerPokemon = document.getElementById('player-pokemon');
-    if (inputHipodoge.checked) {        
-        pPlayerPokemon.innerHTML = "Hipodoge";
+    let imgPlayerPoke = document.getElementById('img-player-poke');    
+
+    if (inputSquirtle.checked) {        
+        pPlayerPokemon.innerHTML = "Squirtle";
+        imgPlayerPoke.src = "./assets/squirtle.png";
         panelSelection('none');        
-    } else if (inputCapipepo.checked) {
-        pPlayerPokemon.innerHTML = "Capipepo"; 
+    } else if (inputBulbasaur.checked) {
+        pPlayerPokemon.innerHTML = "Bulbasaur"; 
+        imgPlayerPoke.src = "./assets/bulbasaur.png";
         panelSelection('none');       
-    } else if (inputRatigueya.checked){
-        pPlayerPokemon.innerHTML = "Ratigueya";
+    } else if (inputCharmander.checked){
+        pPlayerPokemon.innerHTML = "Charmander";
+        imgPlayerPoke.src = "./assets/charmander.png";
         panelSelection('none');       
     } else{
         alert("debes seleccionar uno.");
@@ -48,15 +53,20 @@ function panelSelection(valor){
 }
 
 function selectPokemonEnemy(){
-    let mokeponAletorio = random(1, 3);
-    let spanMokeponEnemigo = document.getElementById('enemy-pokemon');
+    let pokemonRandom = random(1, 3);
+    let spanPokemonEnemy = document.getElementById('enemy-pokemon');
 
-    if (mokeponAletorio == 1) {
-        spanMokeponEnemigo.innerHTML = 'Hipodoge';
-    } else if(mokeponAletorio == 2){
-        spanMokeponEnemigo.innerHTML = 'Capipepo';
+    let imgEnemyPoke = document.getElementById('img-enemy-poke');
+
+    if (pokemonRandom == 1) {
+        spanPokemonEnemy.innerHTML = 'Squirtle';
+        imgEnemyPoke.src = "./assets/squirtle.png"
+    } else if(pokemonRandom == 2){
+        spanPokemonEnemy.innerHTML = 'Bulbasaur';
+        imgEnemyPoke.src = "./assets/bulbasaur.png"
     } else {
-        spanMokeponEnemigo.innerHTML = 'Ratigueya';
+        spanPokemonEnemy.innerHTML = 'Charmander';
+        imgEnemyPoke.src = "./assets/charmander.png"
     }  
 }
 function atkFire(){
@@ -103,16 +113,16 @@ function combat(){
             createMessage("E M P A T E!");            
         } else if(playerAttack == 'FUEGO🔥' && enemyAttack == 'PLANTA🌱'){
             enemyLifes--;
-            createMessage('tu Pokemon pierde una vida');
+            createMessage('Pokemon enemigo pierde una vida');
         } else if(playerAttack == 'AGUA💧' && enemyAttack == 'FUEGO🔥'){      
             enemyLifes--;
-            createMessage('tu Pokemon pierde una vida');
+            createMessage('Pokemon enemigo pierde una vida');
         } else if(playerAttack == 'PLANTA🌱' && enemyAttack == 'AGUA💧'){       
             enemyLifes--;
-            createMessage('tu Pokemon pierde una vida');
+            createMessage('Pokemon enemigo pierde una vida');
         } else {                       
             playerLifes--;
-            createMessage('el Pokemon del enemigo pierde una vida');
+            createMessage('tu Pokemon enemigo pierde una vida');
         }        
     }
     counterLifes();       
@@ -120,19 +130,17 @@ function combat(){
 function counterLifes(){
     let pLifes = document.getElementById('player-lifes');
     let eLifes = document.getElementById('enemy-lifes');
-    let sectionAttacks = document.getElementsByClassName('attacks')    
+    let divCounterLifes = document.getElementById('counter-lifes');    
 
     pLifes.innerHTML = hearts(playerLifes);
     eLifes.innerHTML = hearts(enemyLifes);
     
-
     if (enemyLifes == 0){
-        console.log(sectionAttacks);
-        sectionAttacks.style.display = 'none';
+        
+        divCounterLifes.style.display = 'none';
         createEndMessage("GANASTE!");
-    }else if (playerLifes == 0){
-        console.log(sectionAttacks);
-        sectionAttacks.style.display = 'none';
+    }else if (playerLifes == 0){        
+        divCounterLifes.style.display = 'none';
         createEndMessage("PERDISTE!");
     }    
 }

@@ -10,10 +10,16 @@
     font-family: PokemonKiddy;
     src: url(./fonts/Pokemon\ Kiddy\ Ding.ttf);
 }
-body{
-    background: #000 url(https://web.poecdn.com/protected/image/layout/kalandra-bg.jpg?v=1662291060298.69&key=jGhjCJ-8QJtg_O00aZnesQ);
-    color: aqua;    
+body {
+    margin: 0;
+    background-image: url(./assets/fondo.jpg);
+    background-repeat: no-repeat;
+    font-family: PokemonItalic;
+    color: #e7a905;
+    -webkit-text-stroke: 1.2px #12123e; 
+    font-size: 18px; 
 }
+
 .tittle{    
     display: flex;
     color: #e7a905;
@@ -30,13 +36,15 @@ body{
     justify-content: center;
     align-items: center;
 }
-.subttle {
+.subtitle {
     color: #e7a905;
     -webkit-text-stroke: 1px #263f8f;     
     font-family: PokemonItalic;
     font-size: 28px;
 }
-
+#img-player-poke, #img-enemy-poke{
+    width: 80px;
+}
 .cards {
     display: flex;
     gap: 10px;
