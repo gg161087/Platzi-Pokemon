@@ -2,31 +2,54 @@ let playerAttack;
 let enemyAttack;
 let playerLifes = 3;
 let enemyLifes = 3;
+const hearts = {
+    0: ":(",
+    1: "❤",
+    2: "❤❤",
+    3: "❤❤❤"
+}
+//Sections
+const sectionSelectPokemon = document.getElementById('select-pokemon');
+const sectionResult = document.getElementById('result');
+const sectionSelectAttack = document.getElementById('select-attack');
+const sectionBtnsAttacks = document.getElementById('btns-attacks');
+//divs
+const divCounterLifes = document.getElementById('counter-lifes');
+const divAttackOfPlayer = document.getElementById('attack-of-player');
+const divAttackOfEnemy = document.getElementById('attack-of-enemy');
+//buttons 
+const btnSelect = document.getElementById('btn-select');
+const btnAtkFire = document.getElementById('btn-atk-fire');
+const btnAtkWater = document.getElementById('btn-atk-water');
+const btnAtkPlant = document.getElementById('btn-atk-plant');
+const btnReset = document.getElementById('btn-reset');
+const btnAtkFuego = document.getElementById('btn-atk-fire');
+const btnAtkAgua = document.getElementById('btn-atk-water');
+const btnAtkPlanta = document.getElementById('btn-atk-plant');
+//inputs
+const inputSquirtle = document.getElementById('squirtle');
+const inputBulbasaur = document.getElementById('bulbasaur');
+const inputCharmander = document.getElementById('charmander');
 
-function iniciarJuego(){      
-    let btnSelect = document.getElementById('btn-select');
-    btnSelect.addEventListener('click', selectPokemon);
-    let btnAtkFire = document.getElementById('btn-atk-fire');
-    btnAtkFire.addEventListener('click', atkFire);
-    let btnAtkWater = document.getElementById('btn-atk-water');
-    btnAtkWater.addEventListener('click', atkWater);
-    let btnAtkPlant = document.getElementById('btn-atk-plant');
-    btnAtkPlant.addEventListener('click', atkPlant);
-    let btnReset = document.getElementById('btn-reset');
+const imgPlayerPoke = document.getElementById('img-player-poke');
+const imgEnemyPoke = document.getElementById('img-enemy-poke');
+const pPlayerPokemon = document.getElementById('player-pokemon');
+const spanPokemonEnemy = document.getElementById('enemy-pokemon');
+const pLifes = document.getElementById('player-lifes');
+const eLifes = document.getElementById('enemy-lifes');
+
+function startGame(){
+    btnSelect.addEventListener('click', selectPokemon);    
+    btnAtkFire.addEventListener('click', atkFire);    
+    btnAtkWater.addEventListener('click', atkWater);    
+    btnAtkPlant.addEventListener('click', atkPlant);   
     btnReset.addEventListener('click', resetPlay);
-    btnReset.style.display = 'none';
-    let sectionSelect = document.getElementById('select-attack');
-    sectionSelect.style.display = 'none';
+    btnReset.style.display = 'none';    
+    sectionSelectAttack.style.display = 'none';
     enabledBtns(true);
 }
+
 function selectPokemon (){
-    let inputSquirtle = document.getElementById('squirtle');
-    let inputBulbasaur = document.getElementById('bulbasaur');
-    let inputCharmander = document.getElementById('charmander');
-
-    let pPlayerPokemon = document.getElementById('player-pokemon');
-    let imgPlayerPoke = document.getElementById('img-player-poke');    
-
     if (inputSquirtle.checked) {        
         pPlayerPokemon.innerHTML = "Squirtle";
         imgPlayerPoke.src = "./assets/squirtle.png";
@@ -41,23 +64,18 @@ function selectPokemon (){
         panelSelection('none');       
     } else{
         alert("debes seleccionar uno.");
-    }
-    let selectAttack = document.getElementById('select-attack');
-    selectAttack.style.display = 'flex';    
+    }    
+    sectionSelectAttack.style.display = 'flex';    
     selectPokemonEnemy();
     enabledBtns(false);
 }
-function panelSelection(valor){
-    let selectPokemon = document.getElementById('select-pokemon');
-    selectPokemon.style.display = valor;
+
+function panelSelection(valor){    
+    sectionSelectPokemon.style.display = valor;
 }
 
 function selectPokemonEnemy(){
     let pokemonRandom = random(1, 3);
-    let spanPokemonEnemy = document.getElementById('enemy-pokemon');
-
-    let imgEnemyPoke = document.getElementById('img-enemy-poke');
-
     if (pokemonRandom == 1) {
         spanPokemonEnemy.innerHTML = 'Squirtle';
         imgEnemyPoke.src = "./assets/squirtle.png"
@@ -69,18 +87,22 @@ function selectPokemonEnemy(){
         imgEnemyPoke.src = "./assets/charmander.png"
     }  
 }
+
 function atkFire(){
     playerAttack = 'FUEGO🔥';
     atkRandomEnemy();
 }
+
 function atkWater(){
     playerAttack = 'AGUA💧';
     atkRandomEnemy();
 }
+
 function atkPlant(){
     playerAttack = 'PLANTA🌱';
     atkRandomEnemy();
 }
+
 function atkRandomEnemy(){
     let atkRandom = random(1, 3);
     if (atkRandom == 1){
@@ -92,21 +114,17 @@ function atkRandomEnemy(){
     }
     combat();   
 }
-function createMessage(ganador){
-    let sectionResult = document.getElementById('result');
-    let attacksOfPlayer = document.getElementById('attack-of-player');
-    let attackOfEnemy = document.getElementById('attack-of-enemy');
-    
+
+function createMessage(ganador){     
     let newAtkPlayer = document.createElement('p');
     let newAtkEnemy = document.createElement('p');
-
     sectionResult.innerHTML = ganador;
     newAtkPlayer.innerHTML = playerAttack;
     newAtkEnemy.innerHTML = enemyAttack;  
-    
-    attacksOfPlayer.appendChild(newAtkPlayer);
-    attackOfEnemy.appendChild(newAtkEnemy);
+    divAttackOfPlayer.appendChild(newAtkPlayer);
+    divAttackOfEnemy.appendChild(newAtkEnemy);
 }
+
 function combat(){
     if (playerLifes > 0 && enemyLifes > 0) {
         if(playerAttack == enemyAttack){
@@ -128,61 +146,36 @@ function combat(){
     counterLifes();       
 }
 function counterLifes(){
-    let pLifes = document.getElementById('player-lifes');
-    let eLifes = document.getElementById('enemy-lifes');
-    let divCounterLifes = document.getElementById('counter-lifes');    
-
-    pLifes.innerHTML = hearts(playerLifes);
-    eLifes.innerHTML = hearts(enemyLifes);
-    
-    if (enemyLifes == 0){
-        
-        divCounterLifes.style.display = 'none';
+    pLifes.innerHTML = hearts[playerLifes];
+    eLifes.innerHTML = hearts[enemyLifes];    
+    if (enemyLifes == 0){ 
+        sectionBtnsAttacks.style.display = 'none';       
         createEndMessage("GANASTE!");
-    }else if (playerLifes == 0){        
-        divCounterLifes.style.display = 'none';
+    }else if (playerLifes == 0){
+        sectionBtnsAttacks.style.display = 'none';      
         createEndMessage("PERDISTE!");
     }    
 }
-function hearts(number){
-    let heart = "";
-    switch (number) {
-        case 1:
-            heart = "❤";
-            break;
-        case 2:
-            heart = "❤❤";
-            break;
-        case 3:
-                heart = "❤❤❤";
-                break;        
-        default:
-            heart = "";
-            break;        
-    }
-    return heart;
-}
-function enabledBtns(booleano){    
-    let btnAtkFuego = document.getElementById('btn-atk-fire');
+
+function enabledBtns(booleano){      
     btnAtkFuego.disabled = booleano;    
-    let btnAtkAgua = document.getElementById('btn-atk-water');
-    btnAtkAgua.disabled = booleano;
-    let btnAtkPlanta = document.getElementById('btn-atk-plant');
+    btnAtkAgua.disabled = booleano; 
     btnAtkPlanta.disabled = booleano;
 }
-function createEndMessage(winner){
-    let sectionMensajes = document.getElementById('result');    
-    sectionMensajes.innerHTML = winner;    
-    enabledBtns(true);
-    let btnReiniciar = document.getElementById('btn-reset');
-    btnReiniciar.addEventListener('click', resetPlay);
-    btnReiniciar.style.display = 'block';
+
+function createEndMessage(winner){     
+    sectionResult.innerHTML = winner;    
+    enabledBtns(true);    
+    btnReset.addEventListener('click', resetPlay);
+    btnReset.style.display = 'block';
 }
+
 function resetPlay(){
     window.location.reload();
 }
+
 function random (min, max){
     return Math.floor(Math.random()*(max - min + 1)+min);
 }
 
-window.addEventListener('load', iniciarJuego);
+window.addEventListener('load', startGame);

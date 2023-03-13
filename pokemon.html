@@ -6,16 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>POKEPON!</title>
         <link rel="stylesheet" href="./styles.css">   
-        <script src="./js/pokemon.js"></script> 
     </head>
     <body> 
         <div>
             <div class="tittle">
-                <h1 class="titulo">PoKéMoN!<br>🔥🌱💧</h1>
-            </div>
-    
-            <section id="select-pokemon">                
-    
+                <h1 class="titulo">PoKéMoN!</h1>
+                <p class="subtitulo">💧🔥🌱</p>
+            </div>    
+            <section id="select-pokemon"> 
                 <h2 id="pre-selection" class="subtitle">Elige tu pokepon:</h2>   
                 <div class="cards">
                     <div class="card">
@@ -24,34 +22,32 @@
                             <p>Squirtle💧</p>                        
                             <img src="./assets/squirtle.png" alt="Squirtle">
                         </label>
+                    </div>
+                    <div class="card">
+                        <input type="radio" name="pokemon" id="charmander" />
+                        <label id="label-charmander" class="pokemon" for="charmander">
+                            <p>Charmander🔥</p>                        
+                            <img src="./assets/charmander.png" alt="Charmander">
+                        </label>      
+                    </div>
+                    <div class="card">
+                        <input type="radio" name="pokemon" id="bulbasaur" />
+                        <label id="label-bulbasaur" class="pokemon" for="bulbasaur">
+                            <p>Bulbasaur🌱</p>                        
+                            <img src="./assets/bulbasaur.png" alt="Bulbasaur">
+                        </label>
                     </div>                    
-                    
-                    <input type="radio" name="pokemon" id="bulbasaur" />
-                    <label id="label-bulbasaur" class="pokemon" for="bulbasaur">
-                        <p>Bulbasaur🌱</p>                        
-                        <img src="./assets/bulbasaur.png" alt="Bulbasaur">
-                    </label>
-                    
-                    <input type="radio" name="pokemon" id="charmander" />
-                    <label id="label-charmander" class="pokemon" for="charmander">
-                        <p>Charmander🔥</p>                        
-                        <img src="./assets/charmander.png" alt="Charmander">
-                    </label>  
-
                 </div>
-                <button id="btn-select">Seleccionar</button>
-    
+                <button id="btn-select">Seleccionar</button>    
             </section>
     
-            <section id="select-attack">
-                
+            <section id="select-attack">                
                 <h2 class="subtitle">Elige tu ataque:</h2>
-
-                <div class="btns-attacks">
-                    <button id="btn-atk-fire">Fuego 🔥</button>
-                    <button id="btn-atk-water">Agua 💧</button>
-                    <button id="btn-atk-plant">Planta 🌱</button>
-                </div> 
+                <section id="btns-attacks">
+                    <button class="btn-attacks" id="btn-atk-fire">Fuego 🔥</button>
+                    <button class="btn-attacks" id="btn-atk-water">Agua 💧</button>
+                    <button class="btn-attacks" id="btn-atk-plant">Planta 🌱</button>
+                </section>
 
                 <div id="message">                    
                     <p id="result">Elige un Ataque</p>                              
@@ -78,5 +74,6 @@
                 </div>                
             </section>
         </div>
+        <script src="./js/pokemon.js"></script> 
     </body>
 </html>

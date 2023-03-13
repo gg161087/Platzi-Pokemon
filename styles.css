@@ -10,10 +10,20 @@
     font-family: PokemonKiddy;
     src: url(./fonts/Pokemon\ Kiddy\ Ding.ttf);
 }
+@keyframes de-izquierda-a-dererecha{
+    0%{
+        transform: translateX(-500px);
+    }
+    100%{
+        transform: translateX(0px);
+    }
+}
 body {
-    margin: 0;
+    margin: 20px;
+    background-color: #000;
     background-image: url(./assets/fondo.jpg);
     background-repeat: no-repeat;
+    background-size: 100vw 100vh;
     font-family: PokemonItalic;
     color: #e7a905;
     -webkit-text-stroke: 1.2px #12123e; 
@@ -22,13 +32,20 @@ body {
 
 .tittle{    
     display: flex;
+    flex-direction: column;    
     color: #e7a905;
     -webkit-text-stroke: 1px #263f8f;     
     font-family: PokemonItalic;
     font-size: 28px;
     box-sizing: border-box;
     justify-content: center;
-    align-items: center;             
+    align-items: center;                 
+}
+.titulo{
+    margin: 10px;
+}
+.subtitulo{
+    margin: 10px;
 }
 #select-pokemon {
     display: flex;
@@ -40,7 +57,9 @@ body {
     color: #e7a905;
     -webkit-text-stroke: 1px #263f8f;     
     font-family: PokemonItalic;
-    font-size: 28px;
+    font-size: 28px;    
+    margin: 10px;
+    padding: 10px;
 }
 #img-player-poke, #img-enemy-poke{
     width: 80px;
@@ -49,12 +68,18 @@ body {
     display: flex;
     gap: 10px;
 }
-.btns-attacks {
+#btns-attacks {
     display: flex;
 }
-.card:hover {
+.card{
+    transition: 2s ease-in-out;    
+    /*transform: scale(1.1) para agrandar*/
+    transform: rotate(360deg);
+}
+.pokemon:hover {
     cursor: pointer;
     box-shadow: 1px1px10px #000;
+    transform: scale(1.1);
 }
 input:checked+label {
     background-color: #263f8f;
@@ -73,6 +98,7 @@ input:checked+label {
 }
 .pokemon img {
     width: 80px;
+    height: 70px;
 }
 #btn-select {    
     border: 1px solid;
@@ -84,7 +110,8 @@ input:checked+label {
     color: aqua;
     box-sizing: border-box;
     color: #263f8f;
-    -webkit-text-stroke: 1px #263f8f;      
+    -webkit-text-stroke: 1px #263f8f;
+    cursor: pointer;      
 }
 button {
     border: 1px solid;
@@ -101,10 +128,21 @@ button {
 input {
     display: none;
 }
+.btn-attacks{
+    cursor: pointer;
+}
+#counter-lifes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.item-a, .item-b {
+    margin: 20px;
+}
 #select-attack {   
     display: none;
     flex-direction: column;
-    align-items: center;
+    align-items: center;    
 }
 #message {
     display: flex;
@@ -127,8 +165,8 @@ input {
     grid-template-columns: 150px 150px;
 }
 
-@media (max-width: 360px) {
-    .cards, .btns-attacks {
+@media (max-width: 640px) {
+    .cards, #btns-attacks {
         flex-direction: column;
     }    
 }
