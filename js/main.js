@@ -8,6 +8,24 @@ const hearts = {
     2: "❤❤",
     3: "❤❤❤"
 }
+
+class Pokemon {
+    constructor(nombre, imagen, vida) {
+        this.nombre = nombre;
+        this.imagen = imagen;
+        this.vida = vida;
+    };
+};
+
+let squirtle = new Pokemon('Squirtle', './assets/squirtle.png', 3);
+let charmander = new Pokemon('Charmander', './assets/charmander.png', 3);
+let bulbasaur = new Pokemon('Bulbasaur', './assets/bulbasaur.png', 3);
+
+console.log(squirtle);
+console.log(charmander);
+console.log(bulbasaur);
+
+
 //Sections
 const sectionSelectPokemon = document.getElementById('select-pokemon');
 const sectionResult = document.getElementById('result');
@@ -140,7 +158,7 @@ function combat(){
             createMessage('Pokemon enemigo pierde una vida');
         } else {                       
             playerLifes--;
-            createMessage('tu Pokemon enemigo pierde una vida');
+            createMessage('tu Pokemon pierde una vida');
         }        
     }
     counterLifes();       
