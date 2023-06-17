@@ -8,12 +8,14 @@ const hearts = {
     2: "❤❤",
     3: "❤❤❤"
 }
+let pokemones = [];
 
 class Pokemon {
-    constructor(nombre, imagen, vida) {
+    constructor(nombre, imagen, vida, ataques) {
         this.nombre = nombre;
         this.imagen = imagen;
         this.vida = vida;
+        this.ataques = [];
     };
 };
 
@@ -21,10 +23,31 @@ let squirtle = new Pokemon('Squirtle', './assets/squirtle.png', 3);
 let charmander = new Pokemon('Charmander', './assets/charmander.png', 3);
 let bulbasaur = new Pokemon('Bulbasaur', './assets/bulbasaur.png', 3);
 
-console.log(squirtle);
-console.log(charmander);
-console.log(bulbasaur);
+squirtle.ataques.push(
+    { nombre: '💧', id: 'btn-atk-water'},
+    { nombre: '💧', id: 'btn-atk-water'},
+    { nombre: '💧', id: 'btn-atk-water'},
+    { nombre: '🔥', id: 'btn-atk-fire'},        
+    { nombre: '🌱', id: 'btn-atk-plant'}
+)
 
+charmander.ataques.push(
+    { nombre: '🔥', id: 'btn-atk-fire'},
+    { nombre: '🔥', id: 'btn-atk-fire'},        
+    { nombre: '🔥', id: 'btn-atk-fire'},
+    { nombre: '💧', id: 'btn-atk-water'},
+    { nombre: '🌱', id: 'btn-atk-plant'}
+)
+
+bulbasaur.ataques.push(
+    { nombre: '🌱', id: 'btn-atk-plant'},
+    { nombre: '🌱', id: 'btn-atk-plant'},
+    { nombre: '🌱', id: 'btn-atk-plant'},
+    { nombre: '💧', id: 'btn-atk-water'},
+    { nombre: '🔥', id: 'btn-atk-fire'}        
+)
+
+pokemones.push(squirtle, charmander, bulbasaur);
 
 //Sections
 const sectionSelectPokemon = document.getElementById('select-pokemon');
@@ -57,13 +80,16 @@ const pLifes = document.getElementById('player-lifes');
 const eLifes = document.getElementById('enemy-lifes');
 
 function startGame(){
+    sectionSelectAttack.style.display = 'none';
+    pokemones.forEach((pokemon) => {
+        console.log(pokemon.nombre);
+    })
     btnSelect.addEventListener('click', selectPokemon);    
     btnAtkFire.addEventListener('click', atkFire);    
     btnAtkWater.addEventListener('click', atkWater);    
     btnAtkPlant.addEventListener('click', atkPlant);   
     btnReset.addEventListener('click', resetPlay);
     btnReset.style.display = 'none';    
-    sectionSelectAttack.style.display = 'none';
     enabledBtns(true);
 }
 
