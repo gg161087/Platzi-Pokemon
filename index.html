@@ -15,38 +15,17 @@
             </div>    
             <section id="select-pokemon"> 
                 <h2 id="pre-selection" class="subtitle">Elige tu pokepon:</h2>   
-                <div class="cards">
-                    <div class="card">
-                        <input type="radio" name="pokemon" id="squirtle" />
-                        <label id="label-squirtle" class="pokemon" for="squirtle">
-                            <p>Squirtle💧</p>                        
-                            <img src="./assets/squirtle.png" alt="Squirtle">
-                        </label>
-                    </div>
-                    <div class="card">
-                        <input type="radio" name="pokemon" id="charmander" />
-                        <label id="label-charmander" class="pokemon" for="charmander">
-                            <p>Charmander🔥</p>                        
-                            <img src="./assets/charmander.png" alt="Charmander">
-                        </label>      
-                    </div>
-                    <div class="card">
-                        <input type="radio" name="pokemon" id="bulbasaur" />
-                        <label id="label-bulbasaur" class="pokemon" for="bulbasaur">
-                            <p>Bulbasaur🌱</p>                        
-                            <img src="./assets/bulbasaur.png" alt="Bulbasaur">
-                        </label>
-                    </div>                    
+                <div class="cards" id="cards">
+                                        
                 </div>
                 <button id="btn-select">Seleccionar</button>    
             </section>
     
             <section id="select-attack">                
                 <h2 class="subtitle">Elige tu ataque:</h2>
+                
                 <section id="btns-attacks">
-                    <button class="btn-attacks" id="btn-atk-fire">Fuego 🔥</button>
-                    <button class="btn-attacks" id="btn-atk-water">Agua 💧</button>
-                    <button class="btn-attacks" id="btn-atk-plant">Planta 🌱</button>
+
                 </section>
 
                 <div id="message">                    
@@ -59,14 +38,14 @@
                 <div class="attacks" id="counter-lifes">
                     <div class="item-a">
                         <p>Juegador:</p>
-                        <p id="player-lifes">❤❤❤</p> 
+                        <p id="player-lifes"></p> 
                         <p id="player-pokemon"></p>
                         <img src="" alt="" id="img-player-poke">
                         <div id="attack-of-player"></div>                        
                     </div>
                     <div class="item-b">
                         <p>Enemigo:</p>
-                        <p id="enemy-lifes">❤❤❤</p>
+                        <p id="enemy-lifes"></p>
                         <p id="enemy-pokemon"></p>
                         <img src="" alt="" id="img-enemy-poke">
                         <div id="attack-of-enemy"></div>                        
