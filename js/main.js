@@ -1,5 +1,5 @@
 let playerAttack = [];
-let enemyAttack;
+let enemyAttack = [];
 let pokemonsOptions;
 let inputSquirtle;
 let inputBulbasaur; 
@@ -9,8 +9,11 @@ let btnAtkWater;
 let btnAtkPlant;
 let btns = [];
 let pokemonPlayer;
-let attacksPokemon; 
+let attacksPokemon;
+let attacksPokemonEnemy; 
 let playerLifes = 5;
+let indexAttackPlayer;
+let indexAttackEnemy;
 let enemyLifes = 5;
 const hearts = {
     0: ":(",
@@ -168,21 +171,23 @@ const attackSequence = () => {
     btns.forEach((btn) => {
         btn.addEventListener('click', (e) => {            
             if(e.target.textContent === '💧'){
-                playerAttack.push('💧');
-                atkWater();
+                playerAttack.push('💧');                
                 btn.disabled = true;
                 btn.style.background = '#392b02';
+                btn.style.cursor = 'not-allowed';
             } else if (e.target.textContent === "🔥") {
-                playerAttack.push('🔥');
-                atkFire();
+                playerAttack.push('🔥');            
                 btn.disabled = true;
                 btn.style.background = '#392b02';
+                btn.style.cursor = 'not-allowed';
             } else {
-                playerAttack.push('🌱');
-                atkPlant();
+                playerAttack.push('🌱');                
                 btn.disabled = true;
                 btn.style.background = '#392b02';
+                btn.style.cursor = 'not-allowed';
             }
+            console.log(playerAttack)
+            atkRandomEnemy();
         })
     })
 }
@@ -197,73 +202,79 @@ function selectPokemonEnemy(){
     eLifes.innerHTML = hearts[enemyLifes];
     spanPokemonEnemy.innerHTML = pokemons[pokemonRandom].name;
     imgEnemyPoke.src = pokemons[pokemonRandom].image;
+    attacksPokemonEnemy = pokemons[pokemonRandom].attacks;
     attackSequence();
 }
 
-function atkFire(){    
-    atkRandomEnemy();
-}
-
-function atkWater(){    
-    atkRandomEnemy();
-}
-
-function atkPlant(){    
-    atkRandomEnemy();
-}
-
 function atkRandomEnemy(){
-    let atkRandom = random(1, 3);
-    if (atkRandom == 1){
-        enemyAttack = 'FUEGO🔥';
-    } else if (atkRandom == 2){
-        enemyAttack = 'AGUA💧';
+    let atkRandom = random(0, attacksPokemonEnemy.length -1);
+    if (atkRandom == 0 || atkRandom ==  1){
+        enemyAttack.push('🔥');
+    } else if (atkRandom == 3 || atkRandom == 4){
+        enemyAttack.push('💧');
     } else {
-        enemyAttack = 'PLANTA🌱';
+        enemyAttack.push('🌱');
     }
-    combat();   
+    console.log(enemyAttack);
+    startFight()   
+}
+
+const startFight = () => {
+    if (playerAttack.length === 5) {        
+        combat();
+    }
 }
 
 function createMessage(ganador){     
     let newAtkPlayer = document.createElement('p');
     let newAtkEnemy = document.createElement('p');
     sectionResult.innerHTML = ganador;
-    newAtkPlayer.innerHTML = playerAttack;
-    newAtkEnemy.innerHTML = enemyAttack;  
+    newAtkPlayer.innerHTML = indexAttackPlayer;
+    newAtkEnemy.innerHTML = indexAttackEnemy;  
     divAttackOfPlayer.appendChild(newAtkPlayer);
     divAttackOfEnemy.appendChild(newAtkEnemy);
 }
 
+const opponentsIndex = (index) => {
+    indexAttackPlayer = playerAttack[index];
+    indexAttackEnemy = enemyAttack[index];
+}
+
 function combat(){
-    if (playerLifes > 0 && enemyLifes > 0) {
-        if(playerAttack == enemyAttack){
+    for (let i = 0; i < playerAttack.length; i++) {
+        opponentsIndex(i)
+        if(playerAttack[i] == enemyAttack[i]){
             createMessage("E M P A T E!");            
-        } else if(playerAttack == 'FUEGO🔥' && enemyAttack == 'PLANTA🌱'){
+        } else if(playerAttack[i] == '🔥' && enemyAttack[i] == '🌱'){
             enemyLifes--;
             createMessage('Pokemon enemigo pierde una vida');
-        } else if(playerAttack == 'AGUA💧' && enemyAttack == 'FUEGO🔥'){      
+        } else if(playerAttack[i] == '💧' && enemyAttack[i] == '🔥'){      
             enemyLifes--;
             createMessage('Pokemon enemigo pierde una vida');
-        } else if(playerAttack == 'PLANTA🌱' && enemyAttack == 'AGUA💧'){       
+        } else if(playerAttack[i] == '🌱' && enemyAttack[i] == '💧'){       
             enemyLifes--;
             createMessage('Pokemon enemigo pierde una vida');
         } else {                       
             playerLifes--;
-            createMessage('tu Pokemon pierde una vida');
+            createMessage('tu Pokemon pierde una vida');            
         }        
     }
     counterLifes();       
-}
+}  
+
 function counterLifes(){
     pLifes.innerHTML = hearts[playerLifes];
-    eLifes.innerHTML = hearts[enemyLifes];    
-    if (enemyLifes == 0){ 
+    eLifes.innerHTML = hearts[enemyLifes];
+    if (playerLifes > enemyLifes) {
         sectionBtnsAttacks.style.display = 'none';       
-        createEndMessage("GANASTE!");
-    }else if (playerLifes == 0){
+        createEndMessage("GANASTE!");        
+    } else if (playerLifes < enemyLifes){
         sectionBtnsAttacks.style.display = 'none';      
         createEndMessage("PERDISTE!");
-    }    
+    } else {
+        createEndMessage("EMPATE");
+    }  
+
 }
 
 function enabledBtns(booleano){       
